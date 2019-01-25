@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    img{
+        display: block;
+        width: 300px;
+        height: 300px;
+        margin-bottom: 20px;
+        border: 1px solid #000;
+    }
+</style>
+<body>
+<img class="lazy-load" src="" data-src="https://image1.suning.cn/uimg/cms/img/154831216776283415.jpg" alt="">
+<img class="lazy-load" src="" data-src="https://image1.suning.cn/uimg/cms/img/154831216776283415.jpg" alt="">
+<img class="lazy-load" src="" data-src="https://image3.suning.cn/uimg/cms/img/154831261886484875.jpg" alt="">
+<img class="lazy-load" src="" data-src="https://image.suning.cn/uimg/aps/material/154832121735071122.jpg" alt="">
+<img class="lazy-load" src="" data-src="https://image1.suning.cn/uimg/cms/img/154831216776283415.jpg" alt="">
+<img class="lazy-load" src="" data-src="https://image1.suning.cn/uimg/cms/img/154831216776283415.jpg" alt="">
+</body>
+<script>
+    let imgs = document.querySelectorAll("img.lazy-load");
+    imgs = Array.from(imgs);
+    lazyLoad();
+    window.onscroll = function () {
+        lazyLoad();
+    }
+    function lazyLoad() {
+        let size = document.documentElement.scrollTop;
+        imgs = imgs.filter(function (val) {
+            console.log(1);
+            if(size>val.offsetTop-window.innerHeight){
+                val.src = val.getAttribute("data-src");
+                return false;
+            }else {
+                return true;
+            }
+        });
+    }
+</script>
+</html>
